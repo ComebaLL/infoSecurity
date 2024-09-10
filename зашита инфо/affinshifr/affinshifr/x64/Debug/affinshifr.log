@@ -1,0 +1,7 @@
+﻿  affinshifr.cpp
+D:\ЗАБгу\4ый курс\зашита инфо\affinshifr\affinshifr.cpp(67,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\ЗАБгу\4ый курс\зашита инфо\affinshifr\affinshifr.cpp(73,57): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+D:\ЗАБгу\4ый курс\зашита инфо\affinshifr\affinshifr.cpp(87,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+D:\ЗАБгу\4ый курс\зашита инфо\affinshifr\affinshifr.cpp(94,53): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+D:\ЗАБгу\4ый курс\зашита инфо\affinshifr\affinshifr.cpp(119,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  affinshifr.vcxproj -> D:\ЗАБгу\4ый курс\зашита инфо\affinshifr\x64\Debug\affinshifr.exe
