@@ -52,56 +52,59 @@ def apply_s_blocks_decrypt(bin_seq, s_permutation):
         decrypted_seq += s_block_decrypt(bin_seq[i:i+4], s_permutation)
     return decrypted_seq
 
-# Основная программа
-
-# Генерация перестановок
-p_permutation = generate_permutation(list(range(32)))
-s_permutation = generate_permutation(list(range(16)))
-
-# Пример строки для шифрования
-message = "ЖП"
-
-# Шифрование
-# Перевод строки в 32-битную последовательность
-bin_seq = str_to_bin(message)
-
-# Шифрование P-блоком
-encrypted_p1 = p_block_encrypt(bin_seq, p_permutation)
-
-# Шифрование S-блоками
-encrypted_s_blocks = apply_s_blocks(encrypted_p1, s_permutation)
-
-# Шифрование P-блоком
-final_encrypted = p_block_encrypt(encrypted_s_blocks, p_permutation)
-
-print(f"Зашифрованная последовательность: {final_encrypted}")
-
-# Расшифрование
-# Расшифрование P-блоком
-decrypted_p1 = p_block_decrypt(final_encrypted, p_permutation)
-
-# Расшифрование S-блоками
-decrypted_s_blocks = apply_s_blocks_decrypt(decrypted_p1, s_permutation)
-
-# Расшифрование P-блоком
-final_decrypted = p_block_decrypt(decrypted_s_blocks, p_permutation)
-
-print(f"Расшифрованная последовательность: {final_decrypted}")
-
 # Перевод обратно в строку
 def bin_to_str(bin_seq):
     first_char = chr(int(bin_seq[:16], 2))
     second_char = chr(int(bin_seq[16:], 2))
     return first_char + second_char
 
+# Основная программа
+
+# Генерация перестановок
+p_permutation = generate_permutation(list(range(32)))  # Полная перестановка для 32 бит
+s_permutation = generate_permutation(list(range(16)))
+
+# Пример строки для шифрования
+message = "ЖП"
+
+# Шифрование
+print(f"Исходное сообщение: {message}")
+
+# Перевод строки в 32-битную последовательность
+bin_seq = str_to_bin(message)
+print(f"Битовая форма исходного сообщения: {bin_seq}")
+
+# Шифрование P-блоком (теперь для всей 32-битной строки)
+encrypted_p1 = p_block_encrypt(bin_seq, p_permutation)
+print(f"Зашифрованная p-блоком битовая форма: {encrypted_p1}")
+
+# Шифрование S-блоками
+encrypted_s_blocks = apply_s_blocks(encrypted_p1, s_permutation)
+print(f"Зашифрованная батареей s-блоков битовая форма: {encrypted_s_blocks}")
+
+# Шифрование P-блоком
+final_encrypted = p_block_encrypt(encrypted_s_blocks, p_permutation)
+print(f"Зашифрованная p-блоком битовая форма: {final_encrypted}")
+
+# Перевод зашифрованной последовательности в строку
+encrypted_message = bin_to_str(final_encrypted)
+print(f"Зашифрованное сообщение: {encrypted_message}")
+
+print("\nПереходим к расшифровке...")
+
+# Расшифрование
+# Расшифрование P-блоком
+decrypted_p1 = p_block_decrypt(final_encrypted, p_permutation)
+print(f"Расшифрованная обратным p-блоком битовая форма: {decrypted_p1}")
+
+# Расшифрование S-блоками
+decrypted_s_blocks = apply_s_blocks_decrypt(decrypted_p1, s_permutation)
+print(f"Расшифрованная батареей обратных s-блоков битовая форма: {decrypted_s_blocks}")
+
+# Расшифрование P-блоком
+final_decrypted = p_block_decrypt(decrypted_s_blocks, p_permutation)
+print(f"Расшифрованная обратным p-блоком битовая форма: {final_decrypted}")
+
+# Перевод обратно в строку
 decrypted_message = bin_to_str(final_decrypted)
 print(f"Расшифрованное сообщение: {decrypted_message}")
-
-
-
-
-
-
-
-
-
